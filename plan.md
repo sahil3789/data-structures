@@ -1,4 +1,4 @@
-#Data Structure
+# Data Structure
 
 DataStructure|Status
 -------------|------
@@ -11,7 +11,7 @@ Hash Table|To Do
 Heap|To Do
 Graph|To Do
 
-#Algorithm
+# Algorithm
 
 Algorithm|Status
 ---------|------
