@@ -5,7 +5,7 @@ public class Driver {
 	public static void main(String args[]) {
 		
 		
-		Stack stackobj = new Stack(100);
+		Stack stackobj = new Stack(-100);
 		
 		//remove from empty stack
 		stackobj.pop();
@@ -39,8 +39,11 @@ public class Driver {
 		System.out.println(stackobj.search(2));
 		
 		//stack overflow
-		for(int i = stackobj.returnTop()+1;i<=stackobj.returnMax();i++)
+		for(int i = stackobj.returnTop()+1;i<=stackobj.returnMax();i++) {
+		System.out.println("for");
 			stackobj.push(i);
+		}
+		stackobj.printStack();
 	}
 	
 }

@@ -8,13 +8,18 @@ class Stack {
 	
 	Stack(int maxValue){
 		
-		if(max<=0)
-			System.out.println("can't take negative value");
-		else {
+		try {
 		max = maxValue;
-		stack = new int[max];
 		top =-1;
+		stack = new int[max];
 		}
+		catch(NegativeArraySizeException e) {
+			System.out.println("stack size can't be a negative number");
+			System.out.println("stack of size 100 created");
+			max = 100;
+			stack = new int[100];
+		}
+		
 	}
 	
 	int returnTop() {
@@ -27,11 +32,13 @@ class Stack {
 	
 	void push(int data) {
 		
-		if(top==max-1)
-			System.out.println("Stack Overflow");
-		else
+			try {
 			stack[++top] = data;
-		
+			}
+		catch(ArrayIndexOutOfBoundsException e) {
+			System.out.println("Stack Overflow");
+			top--;
+		}
 	}
 	
 	void pop() {
@@ -72,6 +79,7 @@ class Stack {
 		
 		for(int i=0;i<=top;i++)
 			System.out.println(stack[i]);
+		
 	}
 	
 }
