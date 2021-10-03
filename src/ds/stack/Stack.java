@@ -1,24 +1,36 @@
-package stack;
+package ds.stack;
 
 class Stack {
 
-	int MAX;
-	int Stack[];
-	int top;
+	private int max;
+	private int stack[];
+	private int top;
 	
-	Stack(int max_value){
+	Stack(int maxValue){
 		
-		MAX = max_value;
-		Stack = new int[MAX];
+		if(max<=0)
+			System.out.println("can't take negative value");
+		else {
+		max = maxValue;
+		stack = new int[max];
 		top =-1;
+		}
+	}
+	
+	int returnTop() {
+		return top;
+	}
+	
+	int returnMax() {
+		return max;
 	}
 	
 	void push(int data) {
 		
-		if(top==MAX-1)
+		if(top==max-1)
 			System.out.println("Stack Overflow");
 		else
-			Stack[++top] = data;
+			stack[++top] = data;
 		
 	}
 	
@@ -33,7 +45,7 @@ class Stack {
 	int search(int data) {
 		
 		for(int i=0;i<=top;i++)
-			if(Stack[i]==data)
+			if(stack[i]==data)
 				return i;
 		
 		return -1;
@@ -41,7 +53,10 @@ class Stack {
 	
 	int peek() {
 		
-		return Stack[top];
+		if(top==-1)
+			return -1;
+		else
+		return stack[top];
 		
 	}
 	
@@ -53,10 +68,10 @@ class Stack {
 			return false;
 	}
 	
-	void printstack() {
+	void printStack() {
 		
 		for(int i=0;i<=top;i++)
-			System.out.println(Stack[i]);
+			System.out.println(stack[i]);
 	}
 	
 }
