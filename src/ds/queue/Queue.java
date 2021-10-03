@@ -1,31 +1,31 @@
-package queue;
+package ds.queue;
 
 	class Queue {
 	
-	int MAX;
+	int max;
 	int front;
 	int rear;
 	int size;
-	int Queue[];
+	int queue[];
 	
 	
-	Queue(int max_value){
+	Queue(int maxValue){
 		
-		MAX = max_value;
+		max = maxValue;
 		front = -1;
 		rear = -1;
 		size=0;
-		Queue = new int[MAX];
+		queue = new int[max];
 		
 	}
 	
 	void enqueue(int data) {
 		
-		if(size==MAX)
+		if(size==max)
 			System.out.println("Queue Overflow");
 		else 
 		{
-		Queue[++rear] = data;
+		queue[++rear] = data;
 		if(front==-1)
 			front++;
 		size++;
@@ -34,7 +34,7 @@ package queue;
 	
 	void dequeue() {
 		
-		if(front>rear)
+		if(front>rear || front ==-1 && rear==front)
 			System.out.println("Queue is empty");
 		else {
 			front++;
@@ -47,7 +47,7 @@ package queue;
 		if(front>rear)
 			return -1;
 		else
-			return Queue[front];
+			return queue[front];
 	}
 	
 	boolean isEmpty() {
@@ -59,16 +59,16 @@ package queue;
 		
 	}
 	
-	void printqueue() {
+	void printQueue() {
 		
 		for(int i=front;i<=rear;i++)
-			System.out.println(Queue[i]);
+			System.out.println(queue[i]);
 	}
 	
 	int search(int data) {
 		
 		for(int i=front;i<=rear;i++)
-			if(Queue[i]==data)
+			if(queue[i]==data)
 				return i;
 		return -1;
 		
