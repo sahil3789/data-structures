@@ -13,7 +13,7 @@ Graph | To Do
 
 # Algorithms
 
-Algorithm | To Do
+Algorithm | Status
 ----------|-------
 Two Pointers | To Do
 Binary Search | To Do
