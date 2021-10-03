@@ -1,14 +1,14 @@
-package linkedlist;
+package ds.linkedlist;
 
 class LinkedList {
 
-	Node head;
-	int count;
+	private Node head;
+	private int count;
 	
 	class Node{
 		
-		int data;
-		Node next;
+		 int data;
+		 Node next;
 		
 		Node(){		
 			data = 0;
@@ -21,7 +21,7 @@ class LinkedList {
 		head = null;
 	}
 	
-	void addfront(int data) {
+	void addFront(int data) {
 		
 		if(head==null) {
 			Node node = new Node();
@@ -42,7 +42,7 @@ class LinkedList {
 		
 	}
 	
-	void addend(int data) {
+	void addEnd(int data) {
 		
 		if(head==null) {
 			Node node = new Node();
@@ -68,7 +68,7 @@ class LinkedList {
 		
 	}
 	
-	void addposition(int pos, int data) {
+	void addPosition(int pos, int data) {
 	
 	if(head==null)
 	{
@@ -80,10 +80,10 @@ class LinkedList {
 		System.out.println("Position not found, Node added at position: "+1+", value:"+data);
 	}
 	else if(pos>count+1) 
-		addend(data);
+		addEnd(data);
 
 	else if(pos==1) 
-		addfront(data);
+		addFront(data);
 
 	else {
 		
@@ -113,7 +113,7 @@ class LinkedList {
 	
 		Node tmp = head;
 		int i = 1;
-		int found = 0;
+		byte found = 0;
 		while(tmp.next!=null)
 		{
 			if(tmp.data==data) {
@@ -128,7 +128,7 @@ class LinkedList {
 			System.out.println("Node not found");
 	}
 	
-	void deleteposition(int pos) {
+	void deletePosition(int pos) {
 		
 		if(head == null || pos < 1 || pos > count)
 			System.out.println("No node found");
@@ -154,7 +154,7 @@ class LinkedList {
 		}
 	}
 	
-	void printlist() {
+	void printList() {
 	
 		Node tmp = head;
 		
