@@ -2,13 +2,12 @@ package linkedlist;
 
 public class Driver {
 	
-	
 	public static void main(String args[]) {
 	
 	
 		LinkedList list = new LinkedList();
 		
-		//add to the front of the list
+		//add data to the front of the list
 		list.addfront(10);
 		list.addfront(20);
 		list.addfront(30);

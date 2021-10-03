@@ -103,7 +103,7 @@ class LinkedList {
 		node.next=next;
 		prev.next=node;
 		count++;
-		System.out.println("Node added at position: "+pos+", value:"+data);
+		System.out.println("Node added at position : "+pos+", value:"+data);
 
 		}
 		
