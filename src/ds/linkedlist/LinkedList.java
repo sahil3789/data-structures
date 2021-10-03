@@ -18,7 +18,7 @@ class LinkedList {
 	
 	LinkedList(){
 		
-		head = null;
+		count = 0;
 	}
 	
 	void addFront(int data) {
@@ -29,7 +29,7 @@ class LinkedList {
 			node.next=null;
 			head = node;
 			count++;
-			System.out.println("Node added at position:"+count+", value:"+data);
+			System.out.println(String.format("Node added at position:%d, value:%d", count,data));
 		}
 		else {
 			Node node = new Node();
@@ -37,7 +37,7 @@ class LinkedList {
 			node.next=head;
 			head = node;
 			count++;
-			System.out.println("Node added at position:"+count+", value:"+data);
+			System.out.println(String.format("Node added at position:%d, value:%d",count,data));
 		}
 		
 	}
@@ -50,8 +50,8 @@ class LinkedList {
 			node.next=null;
 			head = node;
 			count++;
-			System.out.println("Node added at position:"+count+", value:"+data);
-		}
+			System.out.println(String.format("Node added at position:%d, value:%d",count,data));
+				}
 		else {
 			Node tmp = head;
 			
@@ -63,7 +63,7 @@ class LinkedList {
 			node.next=null;
 			tmp.next = node;
 			count++;
-			System.out.println("Node added at position:"+count +", value:"+data);
+			System.out.println(String.format("Node added at position:%d, value:%d",count,data));
 		}
 		
 	}
@@ -77,8 +77,7 @@ class LinkedList {
 		node.next=null;
 		head = node;
 		count++;
-		System.out.println("Position not found, Node added at position: "+1+", value:"+data);
-	}
+		System.out.println(String.format("Node added at position:1, value:%d",data));	}
 	else if(pos>count+1) 
 		addEnd(data);
 
@@ -103,7 +102,7 @@ class LinkedList {
 		node.next=next;
 		prev.next=node;
 		count++;
-		System.out.println("Node added at position : "+pos+", value:"+data);
+		System.out.println(String.format("Node added at position:%d, value:%d",pos,data));
 
 		}
 		
@@ -113,18 +112,18 @@ class LinkedList {
 	
 		Node tmp = head;
 		int i = 1;
-		byte found = 0;
+		boolean found = false;
 		while(tmp.next!=null)
 		{
 			if(tmp.data==data) {
-				found=1;
-				System.out.println("Node found at position: "+i);
+				found=true;
+				System.out.println(String.format("Node added at position:%d",i));
 			}
 			i++;
 			tmp=tmp.next;
 		}
 		
-		if(found==0)
+		if(found==false)
 			System.out.println("Node not found");
 	}
 	
@@ -150,7 +149,7 @@ class LinkedList {
 			
 			prev.next=next.next;
 			count--;
-			System.out.println("Node at position: "+pos+" deleted");
+			System.out.println(String.format("Node added at position:%d deleted",pos));
 		}
 	}
 	
