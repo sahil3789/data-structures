@@ -5,7 +5,7 @@ public class Driver {
 	
 	public static void main(String args[]) {
 	
-		Queue queueobj = new Queue(100);
+		Queue queueobj = new Queue(-100);
 		
 		//remove from an empty queue
 		queueobj.dequeue();

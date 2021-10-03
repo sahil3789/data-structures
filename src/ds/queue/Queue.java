@@ -5,30 +5,36 @@ package ds.queue;
 	int max;
 	int front;
 	int rear;
-	int size;
 	int queue[];
-	
 	
 	Queue(int maxValue){
 		
+		try {
 		max = maxValue;
 		front = -1;
 		rear = -1;
-		size=0;
 		queue = new int[max];
-		
+		}
+		catch(NegativeArraySizeException e) {
+			System.out.println("Queue size cant be negative");
+			System.out.println("Created queue with size 100");
+			max=100;
+			queue = new int[100];
+			
+		}
 	}
 	
 	void enqueue(int data) {
 		
-		if(size==max)
-			System.out.println("Queue Overflow");
-		else 
-		{
+		try {
 		queue[++rear] = data;
 		if(front==-1)
 			front++;
-		size++;
+		}
+		catch(IndexOutOfBoundsException e) {
+			
+			System.out.println("Queue is full");
+			rear--;
 		}
 	}
 	
@@ -38,7 +44,6 @@ package ds.queue;
 			System.out.println("Queue is empty");
 		else {
 			front++;
-			size--;
 			}
 	}
 	
