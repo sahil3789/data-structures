@@ -45,7 +45,6 @@ public class BinaryTree {
 
             if(rootRef.right==null)
             {
-
                 rootRef.right= new Node(key);
                 break;
             }
@@ -55,8 +54,6 @@ public class BinaryTree {
     }
 
     void preorder(Node rootRef) {
-
-
 
         Queue<Node> q = new LinkedList<>();
         q.add(rootRef);
