@@ -2,48 +2,89 @@ package ds.stack;
 
 public class Driver {
 
-	public static void main(String args[]) {
+	public static void main(String[] args){
 		
-		
-		Stack stackobj = new Stack(-100);
+		Stack stack = new Stack(100);
 		
 		//remove from empty stack
-		stackobj.pop();
-		
-		//push an element at the end of the stack
-		stackobj.push(1);
-		stackobj.push(2);
-		stackobj.push(3);
-		stackobj.push(4);
-		stackobj.push(5);
-		stackobj.push(6);
-		stackobj.push(7);
-		
+	/*	try {
+			stack.pop();
+		}
+		catch(StackEmptyException e){
+			e.callShow();
+		}
+	*/
+		try {
+			//push an element at the end of the stack
+			stack.push(1);
+			stack.push(2);
+			stack.push(3);
+			stack.push(4);
+			stack.push(5);
+			stack.push(6);
+			stack.push(7);
+		}
+		catch(StackOverFlowException e){
+			e.callShow();
+
+		}
 		//print the stack
-		stackobj.printStack();
-		
+		try {
+			stack.printStack();
+		}
+		catch(StackEmptyException e){
+			e.callShow();
+		}
+
 		//remove an element from the top of the stack
-		stackobj.pop();
-		stackobj.pop();
-		stackobj.pop();
+		try {
+			stack.pop();
+			stack.pop();
+			stack.pop();
+		}
+		catch(StackEmptyException e)
+		{
+			e.callShow();
+		}
 
 		//check if the stack is empty, returns true if empty, else false
-		System.out.println(stackobj.isEmpty());
+		System.out.println(stack.isEmpty());
 		
 		//returns the topmost element of the stack, if top is -1 return -1
-		System.out.println(stackobj.peek());
-		
-		stackobj.printStack();
-		
+		try {
+			System.out.println(stack.peek());
+		}
+		catch(StackEmptyException e){
+			e.callShow();
+		}
+
+		try {
+			stack.printStack();
+		}
+		catch(StackEmptyException e){
+			e.callShow();
+		}
+
 		//searches element and returns its index (0 indexing), else returns -1 
-		System.out.println(stackobj.search(2));
+		System.out.println(stack.search(2));
 		
 		//stack overflow
-		for(int i = stackobj.returnTop()+1;i<=stackobj.returnMax();i++) {
-		System.out.println("for");
-			stackobj.push(i);
+		for(int i = stack.returnTop()+1;i<=stack.returnMax();i++) {
+			try {
+				stack.push(i);
+			}
+			catch(StackOverFlowException e)
+			{
+				e.callShow();
+			}
 		}
-		stackobj.printStack();
+		try {
+			stack.printStack();
+		}
+		catch(StackEmptyException e)
+		{
+			e.callShow();
+		}
 	}
 	
 }

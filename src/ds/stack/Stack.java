@@ -1,23 +1,53 @@
 package ds.stack;
 
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.util.logging.*;
+
+class StackOverFlowException extends Exception
+{
+	private final static Logger LOGGER =  Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+
+	void callShow(){
+		LOGGER.log(Level.WARNING, "Stack Overflow");
+	}
+
+}
+
+class StackEmptyException extends  Exception {
+
+	private final static Logger LOGGER =  Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+
+	void callShow(){
+
+		LOGGER.log(Level.WARNING, "Stack Empty");
+
+	}
+}
+
+
 class Stack {
 
-	private int max;
-	private int stack[];
+	private final static Logger LOGGER =  Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+
+	static int max=100;
+	private int[] stack;
 	private int top;
 	
 	Stack(int maxValue){
 		
 		try {
-		max = maxValue;
 		top =-1;
-		stack = new int[max];
+		stack = new int[maxValue];
+		max=maxValue;
 		}
 		catch(NegativeArraySizeException e) {
-			System.out.println("stack size can't be a negative number");
-			System.out.println("stack of size 100 created");
-			max = 100;
-			stack = new int[100];
+
+			LOGGER.log(Level.WARNING, "stack size can't be a negative number");
+			LOGGER.log(Level.INFO, "stack of size 100 created");
+
+			stack = new int[max];
 		}
 		
 	}
@@ -30,21 +60,19 @@ class Stack {
 		return max;
 	}
 	
-	void push(int data) {
-		
-			try {
-			stack[++top] = data;
+	void push(int data) throws StackOverFlowException {
+
+			if(top==max-1)
+				throw new StackOverFlowException();
+			else {
+				stack[++top] = data;
 			}
-		catch(ArrayIndexOutOfBoundsException e) {
-			System.out.println("Stack Overflow");
-			top--;
-		}
 	}
 	
-	void pop() {
+	void pop() throws  StackEmptyException{
 		
 		if(top==-1)
-			System.out.println("No element to remove");
+			throw new StackEmptyException();
 		else
 			top--;
 	}
@@ -58,28 +86,29 @@ class Stack {
 		return -1;
 	}
 	
-	int peek() {
+	int peek() throws StackEmptyException{
 		
 		if(top==-1)
-			return -1;
+			throw new StackEmptyException();
 		else
 		return stack[top];
 		
 	}
 	
 	boolean isEmpty() {
-		
-		if(top ==-1)
-			return true;
-		else 
-			return false;
+
+		return top ==-1;
 	}
 	
-	void printStack() {
-		
+	void printStack() throws StackEmptyException{
+
+		if(top==-1)
+			throw new StackEmptyException();
+		else
 		for(int i=0;i<=top;i++)
 			System.out.println(stack[i]);
 		
 	}
 	
 }
+
