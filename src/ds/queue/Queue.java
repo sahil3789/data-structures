@@ -1,14 +1,41 @@
 package ds.queue;
 
-	class Queue {
-	
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+class QueueEmptyException extends  Exception{
+
+	private final static Logger LOGGER =  Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+
+	void showMessage(){
+
+		LOGGER.log(Level.WARNING,"Queue Empty");
+	}
+
+}
+
+class QueueFullException extends  Exception{
+
+	private final static Logger LOGGER =  Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+
+
+	void showMessage(){
+
+		LOGGER.log(Level.WARNING,"Queue Full");
+	}
+}
+
+class Queue {
+
+	private final static Logger LOGGER =  Logger.getLogger(Logger.GLOBAL_LOGGER_NAME);
+
 	int max;
 	int front;
 	int rear;
-	int queue[];
-	
+	int[] queue;
+
 	Queue(int maxValue){
-		
+
 		try {
 		max = maxValue;
 		front = -1;
@@ -16,67 +43,71 @@ package ds.queue;
 		queue = new int[max];
 		}
 		catch(NegativeArraySizeException e) {
-			System.out.println("Queue size cant be negative");
-			System.out.println("Created queue with size 100");
+
+			LOGGER.log(Level.WARNING,"Queue size can't be negative");
+			LOGGER.log(Level.INFO,"Stack of size 100 created");
+
 			max=100;
 			queue = new int[100];
 			
 		}
 	}
 	
-	void enqueue(int data) {
+	void enqueue(int data) throws QueueFullException{
 		
-		try {
-		queue[++rear] = data;
-		if(front==-1)
-			front++;
+		if(rear==max-1 || front>rear)
+			throw new QueueFullException();
+		else{
+			queue[++rear] = data;
+			if(front==-1)
+				front++;
 		}
-		catch(IndexOutOfBoundsException e) {
-			
-			System.out.println("Queue is full");
-			rear--;
-		}
+
 	}
 	
-	void dequeue() {
+	void dequeue() throws QueueEmptyException {
 		
 		if(front>rear || front ==-1 && rear==front)
-			System.out.println("Queue is empty");
-		else {
+			throw new QueueEmptyException();
+		else
 			front++;
-			}
 	}
 	
-	int peek() {
+	int peek() throws QueueEmptyException{
 		
 		if(front>rear)
-			return -1;
+			throw new QueueEmptyException();
 		else
 			return queue[front];
 	}
 	
 	boolean isEmpty() {
 		
-		if(front==-1 && rear==front || front>rear) 
-			return true;
-		else 
-			return false;
-		
+		return (front==-1 && rear==front || front>rear);
+
 	}
 	
-	void printQueue() {
-		
-		for(int i=front;i<=rear;i++)
-			System.out.println(queue[i]);
+	void printQueue() throws QueueEmptyException{
+
+		if(isEmpty())
+			throw new QueueEmptyException();
+		else
+		{
+			for (int i = front; i <= rear; i++)
+				System.out.println(queue[i]);
+		}
 	}
 	
-	int search(int data) {
-		
-		for(int i=front;i<=rear;i++)
-			if(queue[i]==data)
-				return i;
-		return -1;
-		
+	int search(int data) throws QueueEmptyException {
+
+		if(isEmpty())
+			throw new QueueEmptyException();
+		else {
+			for (int i = front; i <= rear; i++)
+				if (queue[i] == data)
+					return i;
+			return -1;
+		}
 	}
 	
 }
