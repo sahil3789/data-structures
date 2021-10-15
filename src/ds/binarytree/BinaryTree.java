@@ -88,5 +88,32 @@ public class BinaryTree {
 
     }
 
+    void deleteDeepestNode(Node rootRef){
+
+        if(rootRef==null)
+            return;
+
+        Queue<Node> q = new LinkedList<>();
+        q.add(rootRef);
+
+        while(!q.isEmpty())
+        {
+            if(q.peek().right.left==null && q.peek().right.right==null) {
+                q.peek().right = null;
+                break;
+            }
+            if(q.peek().left.left==null && q.peek().left.right==null) {
+                q.peek().left = null;
+                break;
+            }
+            if(q.peek().right!=null)
+                q.add(q.peek().right);
+            else if(q.peek().left!=null)
+                q.add(q.peek().left);
+
+            q.remove();
+        }
+
+    }
 
 }

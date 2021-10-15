@@ -21,6 +21,8 @@ public class Driver {
     bt.insert(66);
     bt.insert(90);
 
+    bt.deleteDeepestNode(bt.root);
+
     System.out.println("preorder");
     bt.preorder(bt.root);
 
